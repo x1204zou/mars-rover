@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Mars Rover attempt 1 </title>
+        <style type="text/css">
+            body{
+                margin-left:600px;
+                margin-top: 20px;
+            }
+
+            table{
+                border: 1px solid black;
+            }
+            tr{
+                height:50px;
+                width:50px;
+            }
+            td{
+                height:50px;
+                width:50px;
+            }
+        
+
+
+        </style>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    </head>
+    <body>
+
+
+        Number of columns:
+        <br><input type="text" id="col"><br>
+        Number of rows:
+        <br><input type="text" id="row"><br>
+        Initial start x:
+        <br><input type="text" id = "_x"><br>
+        Initial start y:
+        <br><input type="text" id = "_y"><br>
+        <button id="setGrid" onclick="setGrid()">Set grid</button>
+        <div id="gridArea"></div>
+
+        <script>
+            var ini_x;
+            var ini_y;
+            var dir_count = 0;
+            var direction;
+
+            function setGrid(){
+                ini_x = document.getElementById("_x").value;
+                console.log(ini_x);
+                ini_y = document.getElementById("_y").value;
+                var myDiv = document.getElementById("gridArea");
+                var myGrid = document.createElement("table");
+                myGrid.setAttribute("border",1);
+                myGrid.setAttribute("id","dynGrid");
+                var row=document.getElementById("row").value;
+                var col=document.getElementById("col").value;
+                for (i=0;i<row;i++){
+                    var cell_row = document.createElement('tr');
+                    for (j=0;j<col;j++){
+                        var cell_col = document.createElement('td');
+                        cell_row.appendChild(cell_col);
+                    }
+                    myGrid.appendChild(cell_row)
+                }
+                if (myDiv.childElementCount<1){myDiv.appendChild(myGrid);}
+                setColor(ini_x,ini_y);
+            }
+
+            function setColor(r,c){
+                var myGrid = document.getElementById("dynGrid");
+                myGrid.rows[r].cells[c].style.backgroundColor="#003366";
+            }
+
+            function removeColor(r,c){
+                var myGrid = document.getElementById("dynGrid");
+                myGrid.rows[r].cells[c].style.backgroundColor="#ffffff";
+            }
+
+
+            window.addEventListener("keydown",forward, false);
+
+
+            function forward(e){
+                    var keyvalue = e.keyCode;
+                    //var cell = document.getElementById("dynGrid").rows[ini_x].cells[ini_y];
+                    if (keyvalue == 82){
+                        console.log("r is pressed");
+                        if ((ini_x -1)>=0) {
+                            console.log("Moving forward");
+                            removeColor(ini_x, ini_y);
+                            ini_x--;
+                            setColor(ini_x, ini_y);
+                        }
+                        else {
+                            alert("Rover out of boundary");}
+                    }
+                    else if(keyvalue == 71)
+                {
+                        console.log("turning");
+
+                }
+            }
+
+
+
+/*            function turn(e){
+                debugger;
+                var cell = document.getElementById("dynGrid").rows[ini_x].cells[ini_y];
+                var keycode = e.keyCode;
+                if (keycode == 71){
+                    dir_count ++;
+                    direction = dir_count%4;
+                }
+
+            }*/
+
+        </script>
+    </body>
+</html>

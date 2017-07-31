@@ -1,45 +1,5 @@
-<html>
-    <head>
-        <title>Mars Rover attempt 1 </title>
-        <style type="text/css">
-            body{
-                margin-left:600px;
-                margin-top: 20px;
-            }
-
-            table{
-                border: 1px solid black;
-            }
-            tr{
-                height:50px;
-                width:50px;
-            }
-            td{
-                height:50px;
-                width:50px;
-            }
-        
-
-
-        </style>
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    </head>
-    <body>
-
-
-        Number of columns:
-        <br><input type="text" id="col"><br>
-        Number of rows:
-        <br><input type="text" id="row"><br>
-        Initial start x:
-        <br><input type="text" id = "_x"><br>
-        Initial start y:
-        <br><input type="text" id = "_y"><br>
-        <button id="setGrid" onclick="setGrid()">Set grid</button>
-        <div id="gridArea"></div>
-
-         <script>
-            var ini_x;
+'use strict';           
+var ini_x;
             var ini_y;
             var dir_count = 0;
             var direction;
@@ -92,6 +52,12 @@
 
             }
 
+            //function getNewVal(){
+            //    var userInput = $('#row');
+            //    var cur
+
+            //}
+
             function setColor(r,c){
                 var myGrid = document.getElementById("dynGrid");
                 myGrid.rows[r].cells[c].style.backgroundColor="#003366";
@@ -128,9 +94,4 @@
                         dir_count++;
 
                 }
-             }
-
-        </script> 
-        <!--script src = "robot_operation.js"--><!--/script-->
-    </body>
-</html>
+            }
